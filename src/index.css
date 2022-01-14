@@ -5,9 +5,34 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+ * {
+   box-sizing: border-box;
+ }
+
+.wrapper {
+  border: 10px solid lightgray;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.first-line {
+  font-size: 36px;
+  padding-bottom: 12px;
+}
+
+.second-line {
+  font-size: 28px;
 }
