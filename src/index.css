@@ -36,3 +36,35 @@ code {
 .second-line {
   font-size: 28px;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  background-color: lightskyblue;
+  border: 2px solid darkslateblue;
+  border-radius: 10px;
+  padding: 20px;
+  width: 30vw;
+}
+
+.input {
+  margin-bottom: 10px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 3px 5px;
+}
+
+.input:focus {
+    outline: 2px solid lightslategray;
+}
+
+.button {
+  border: none;
+  background-color: darkslateblue;
+  border-radius: 5px;
+  color: white;
+  height: 30px;
+}
