@@ -2,20 +2,31 @@ function App() {
   let email, password;
 
   function handleChangeInput(event) {
-    switch (event.target.name) {
-      case 'email':
-        email = event.target.value;
-        break;
-      case 'password':
-        password = event.target.value;
-        break;
+    if (event.target.name === 'email') {
+      email = event.target.value;
+    } else if (event.target.name === 'password') {
+      password = event.target.value;
     }
-    // console.log('email', email);
-    // console.log('password', password);
   }
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('handleSubmit was called');
+
+    if (!email || !password) {
+      return alert('Заполните поля');
+    }
+
+    function checkAllSpaces(param) {
+      let regexp = /\s/g;
+      return param.match(regexp) && param.match(regexp).length === param.length;
+    }
+
+    if (checkAllSpaces(email) || checkAllSpaces(password)) {
+      alert('Поле не может состоять целиком из пробелов');
+    } else {
+      console.log({ email, password });
+      event.target.reset();
+    }
   }
 
   return (

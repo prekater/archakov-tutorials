@@ -67,4 +67,5 @@ code {
   border-radius: 5px;
   color: white;
   height: 30px;
+  cursor: pointer;
 }
