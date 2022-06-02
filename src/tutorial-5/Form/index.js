@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
@@ -9,42 +9,34 @@ import Typography from '@mui/material/Typography';
 import { CommentsContext } from '../App';
 
 const Form = () => {
-  let name, email, text;
+  const [fields, setFields] = React.useState({
+    email: '',
+    text: '',
+    fullName: '',
+    createdAt: '',
+  });
 
   const { comments, setComments } = useContext(CommentsContext);
 
   const handleChange = (e) => {
-    switch (true) {
-      case e.target.name === 'name':
-        name = e.target.value;
-        return;
-      case e.target.name === 'email':
-        email = e.target.value;
-        return;
-      case e.target.name === 'feedbackText':
-        text = e.target.value;
-        return;
-    }
+    setFields({
+      ...fields,
+      createdAt: new Date(),
+      [e.target.name]: e.target.value,
+    });
   };
-
-  useEffect(() => {
-    comments.length &&
-      localStorage.setItem('comments', JSON.stringify(comments));
-  }, [comments]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let comment = {
-      fullName: name,
-      email: email,
-      createdAt: new Date(),
-      text: text,
-    };
+    setComments([...comments, fields]);
 
-    setComments([...comments, comment]);
-
-    e.target.reset();
+    setFields({
+      email: '',
+      text: '',
+      fullName: '',
+      createdAt: '',
+    });
   };
 
   return (
@@ -64,12 +56,13 @@ const Form = () => {
         </Typography>
         <TextField
           required
-          id="name"
-          name="name"
+          id="fullName"
+          name="fullName"
           label="Ваше имя"
           variant="outlined"
           sx={{ pb: 1 }}
           onChange={handleChange}
+          value={fields.fullName}
         />
         <TextField
           required
@@ -79,16 +72,18 @@ const Form = () => {
           variant="outlined"
           sx={{ pb: 1 }}
           onChange={handleChange}
+          value={fields.email}
         />
         <TextField
           required
-          id="feedback-text"
-          name="feedbackText"
+          id="text"
+          name="text"
           label="Ваш отзыв"
           multiline
           maxRows={4}
           sx={{ pb: 1 }}
           onChange={handleChange}
+          value={fields.text}
         />
         <Button variant="contained" type="submit">
           ОТПРАВИТЬ

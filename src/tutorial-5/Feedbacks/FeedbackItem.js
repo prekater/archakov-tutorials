@@ -24,7 +24,6 @@ export const FeedbackItem = ({ userName, text, created, index }) => {
       return index !== i;
     });
     setComments(newArr);
-    localStorage.setItem('comments', JSON.stringify(newArr));
   };
 
   return (

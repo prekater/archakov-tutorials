@@ -12,8 +12,12 @@ function App() {
 
   useEffect(() => {
     let commentsFromStorage = JSON.parse(localStorage.getItem('comments'));
-    commentsFromStorage && setComments(commentsFromStorage);
+    commentsFromStorage ? setComments(commentsFromStorage) : setComments([]);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('comments', JSON.stringify(comments));
+  }, [comments]);
 
   return (
     <CommentsContext.Provider value={{ comments, setComments }}>
